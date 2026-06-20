@@ -258,10 +258,11 @@ export const PROCESS_BADGES = [
 ];
 
 export const STATS = [
-  { value: '2,500+', label: 'Families Supported' },
+  { value: '500+', label: 'Families Served' },
   { value: '98%', label: 'Satisfaction Rate' },
   { value: '50+', label: 'Certified Caregivers' },
-  { value: '15+', label: 'Years Experience' },
+  { value: '7+', label: 'Years Experience' },
+  { value: '24/7', label: 'Support Available' },
 ];
 
 export const TESTIMONIALS = [
@@ -286,9 +287,8 @@ export const TESTIMONIALS = [
 ];
 
 export const NAV_LINKS = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
+  { name: 'About Us', path: '/about' },
   { name: 'Services', path: '/services' },
-  { name: 'Pricing', path: '/pricing' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'How It Works', path: '/#how' },
+  { name: 'Our Team', path: '/about#team' },
 ];

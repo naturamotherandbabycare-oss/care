@@ -2,21 +2,36 @@ import { STATS } from '../../utils/constants';
 
 export default function StatsStrip() {
   return (
-    <section className="gradient-dark py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {STATS.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary-400 tracking-tight">
-                {stat.value}
-              </div>
-              <div className="text-xs sm:text-sm text-dark-400 uppercase tracking-wider mt-1 font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+    <div style={{
+      background: 'var(--charcoal)',
+      padding: '2rem 5%',
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: '1.5rem',
+    }}>
+      {STATS.map((stat, index) => (
+        <div key={index} style={{ textAlign: 'center' }}>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.4rem',
+            color: 'var(--dusty-rose)',
+            fontWeight: 300,
+          }}>
+            {stat.value}
+          </div>
+          <div style={{
+            fontSize: '0.78rem',
+            color: 'rgba(255,255,255,0.5)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            marginTop: '0.2rem',
+          }}>
+            {stat.label}
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }

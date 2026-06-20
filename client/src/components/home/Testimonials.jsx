@@ -1,44 +1,113 @@
-import { TESTIMONIALS } from '../../utils/constants';
-import Card from '../ui/Card';
+const TESTIMONIALS_DATA = [
+  {
+    stars: 5,
+    quote: '"Natura Baby & Mother Care was an absolute blessing. Our caregiver Priya felt like a family member from day one. She helped me recover so much faster while making sure my baby was thriving."',
+    name: 'Sunita Kapoor',
+    detail: 'New mother, Mumbai · C-section recovery',
+    avatar: '👩',
+  },
+  {
+    stars: 5,
+    quote: '"As a first-time father, I was terrified. Natura\'s caregiver not only looked after my wife and baby brilliantly, but also taught us everything we needed to know."',
+    name: 'Rohan Mehta',
+    detail: 'First-time parent, Bangalore',
+    avatar: '👨',
+  },
+  {
+    stars: 5,
+    quote: '"I struggled with postnatal blues and Natura\'s team noticed before I even said a word. The emotional support alongside the practical care was unlike anything I expected."',
+    name: 'Deepa Krishnan',
+    detail: 'Mother of twins, Chennai',
+    avatar: '👩',
+  },
+];
 
 export default function Testimonials() {
   return (
-    <section className="py-20 gradient-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-400">Testimonials</span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            What our <span className="text-primary-400">customers</span> say
-          </h2>
-        </div>
+    <section id="testimonials" style={{ padding: '6rem 5%', background: 'var(--charcoal)' }}>
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+        <p style={{
+          fontSize: '0.75rem',
+          fontWeight: 500,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--dusty-rose)',
+          marginBottom: '0.8rem',
+        }}>Testimonials</p>
+        <h2 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: 'clamp(2.2rem, 4vw, 3.4rem)',
+          fontWeight: 300,
+          lineHeight: 1.15,
+          color: 'var(--cream)',
+        }}>
+          Stories from <em style={{ fontStyle: 'italic', color: 'var(--dusty-rose)' }}>our families</em>
+        </h2>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-primary-500/30 transition-all duration-300"
-            >
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="text-accent-400">★</span>
-                ))}
-              </div>
-              <blockquote className="text-dark-200 leading-relaxed text-sm italic mb-6">
-                "{testimonial.text}"
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary-600/30 flex items-center justify-center text-primary-400 font-semibold text-sm">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-xs text-dark-400">{testimonial.role}</div>
-                </div>
+      {/* Cards Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '1.5rem',
+      }}
+      className="testimonials-grid"
+      >
+        {TESTIMONIALS_DATA.map((t, index) => (
+          <div
+            key={index}
+            style={{
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '20px',
+              padding: '2rem',
+              transition: 'border-color 0.3s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(217,168,154,0.4)'}
+            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
+          >
+            {/* Stars */}
+            <div style={{ color: 'var(--dusty-rose)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+              {'★'.repeat(t.stars)}
+            </div>
+
+            <blockquote style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: '1.1rem',
+              fontStyle: 'italic',
+              color: 'rgba(250,246,239,0.85)',
+              lineHeight: 1.65,
+              marginBottom: '1.5rem',
+            }}>
+              {t.quote}
+            </blockquote>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+              <div style={{
+                width: '42px',
+                height: '42px',
+                borderRadius: '50%',
+                background: 'var(--blush)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.2rem',
+              }}>{t.avatar}</div>
+              <div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 500, color: 'var(--cream)' }}>{t.name}</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', marginTop: '0.1rem' }}>{t.detail}</div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .testimonials-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Button from '../components/ui/Button';
-import Input from '../components/ui/Input';
 import { contactService } from '../services/bookingService';
 import { SERVICES } from '../utils/constants';
 
@@ -8,7 +6,6 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     motherName: '',
     phone: '',
-    email: '',
     dueDate: '',
     city: '',
     serviceRequired: '',
@@ -23,13 +20,12 @@ export default function ContactPage() {
     setError('');
 
     if (!form.motherName || !form.phone || !form.serviceRequired) {
-      setError("Please fill in all required fields (Mother's Name, Phone, and Service Required).");
+      setError("Please fill in Mother's Name, Phone, and Service Required.");
       return;
     }
 
-    // Auto-generate email based on phone if not provided, to satisfy backend validator
     const formattedPhone = form.phone.replace(/\D/g, '');
-    const submitEmail = form.email.trim() || `${formattedPhone || 'client'}@naturababycare.in`;
+    const submitEmail = `${formattedPhone || 'client'}@naturababycare.in`;
 
     const combinedMessage = `
 Due / Birth Date: ${form.dueDate || 'Not provided'}
@@ -55,167 +51,200 @@ Special Requirements: ${form.specialRequirements || 'None'}
   };
 
   return (
-    <div className="pt-24 bg-dark-50">
-      {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-dark-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
-            Book a Consultation
-          </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold text-dark-900 tracking-tight">
-            Let's talk about your <span className="text-primary-600">care needs</span>
-          </h1>
-          <p className="mt-4 text-lg text-dark-500 max-w-2xl mx-auto">
-            Reach out and our care coordinators will get back to you within 2 hours. The first consultation is always free — no pressure, no commitment.
-          </p>
-        </div>
-      </section>
+    <div style={{ paddingTop: '80px', background: 'var(--warm-white)' }}>
+      <section id="contact" style={{ padding: '6rem 5%' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.2fr',
+          gap: '5rem',
+          alignItems: 'start',
+        }}
+        className="contact-page-grid"
+        >
+          {/* Left: Info */}
+          <div>
+            <p style={{
+              fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em',
+              textTransform: 'uppercase', color: 'var(--terracotta)', marginBottom: '0.8rem',
+            }}>Book a Consultation</p>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12">
-            {/* Contact Info */}
-            <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-dark-900 mb-6">Contact Details</h2>
-              <p className="text-dark-500 mb-8">Our coordinators are available 7 days a week to help you match with the best caregivers.</p>
+            <h1 style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: '1.2rem', color: 'var(--charcoal)',
+            }}>
+              Let's talk about <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>your</em> care needs
+            </h1>
 
-              <div className="space-y-4">
-                {[
-                  { icon: '📞', label: 'Phone / WhatsApp', value: '+91 98988 09630', href: 'tel:+919898809630' },
-                  { icon: '📧', label: 'Email', value: 'hello@naturababycare.in', href: 'mailto:hello@naturababycare.in' },
-                  { icon: '📍', label: 'Service Areas', value: 'Ahmedabad · Surat · Bhavnagar · Rajkot' },
-                  { icon: '🕐', label: 'Response Time', value: 'Within 2 hours · 7 days a week' },
-                ].map((detail, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-xl shrink-0">
-                      {detail.icon}
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wider text-dark-400 font-semibold">{detail.label}</div>
-                      {detail.href ? (
-                        <a href={detail.href} className="text-dark-900 font-bold hover:text-primary-600 transition-colors">
-                          {detail.value}
-                        </a>
-                      ) : (
-                        <div className="text-dark-900 font-bold">{detail.value}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <p style={{ color: 'var(--warm-gray)', lineHeight: 1.7, marginBottom: '2rem', fontSize: '0.95rem' }}>
+              Reach out and our care coordinators will get back to you within 2 hours. The first consultation is always free — no pressure, no commitment.
+            </p>
 
-              {/* WhatsApp CTA */}
-              <a
-                href="https://wa.me/919898809630?text=Hi%20Natura!%20I%27d%20like%20to%20know%20more%20about%20your%20postnatal%20care%20packages%20in%20Gujarat."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-green-500/25"
-              >
-                💬 Chat on WhatsApp
-              </a>
-            </div>
-
-            {/* Contact Form */}
-            <div className="lg:col-span-3">
-              {submitted ? (
-                <div className="bg-primary-50 rounded-2xl p-10 text-center border border-primary-200">
-                  <div className="text-5xl mb-4">✅</div>
-                  <h3 className="text-2xl font-bold text-dark-900 mb-2">Consultation Requested!</h3>
-                  <p className="text-dark-500">Thank you for reaching out. A Natura coordinator will call or WhatsApp you within 2 hours.</p>
-                  <Button className="mt-6" onClick={() => { setSubmitted(false); setForm({ motherName: '', phone: '', email: '', dueDate: '', city: '', serviceRequired: '', specialRequirements: '' }); }}>
-                    Request Another Consultation
-                  </Button>
-                </div>
-              ) : (
-                <div className="bg-dark-50 rounded-2xl p-8 border border-dark-100">
-                  <h3 className="text-xl font-bold text-dark-900 mb-6">Book Free Consultation</h3>
-                  
-                  {error && (
-                    <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
-                      {error}
-                    </div>
+            {[
+              { icon: '📞', label: 'Phone / WhatsApp', value: '+91 98988 09630', href: 'tel:+919898809630' },
+              { icon: '📧', label: 'Email', value: 'hello@naturababycare.in', href: 'mailto:hello@naturababycare.in' },
+              { icon: '📍', label: 'Service Areas', value: 'Now in Ahmedabad · Surat · Bhavnagar · Rajkot' },
+              { icon: '🕐', label: 'Response Time', value: 'Within 2 hours · 7 days a week' },
+            ].map((detail, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                <div style={{
+                  width: '44px', height: '44px', background: 'var(--blush)',
+                  borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.1rem', flexShrink: 0,
+                }}>{detail.icon}</div>
+                <div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--warm-gray)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{detail.label}</div>
+                  {detail.href ? (
+                    <a href={detail.href} style={{ fontSize: '0.92rem', color: 'var(--charcoal)', fontWeight: 500, textDecoration: 'none', marginTop: '0.1rem', display: 'block' }}>
+                      {detail.value}
+                    </a>
+                  ) : (
+                    <div style={{ fontSize: '0.92rem', color: 'var(--charcoal)', fontWeight: 500, marginTop: '0.1rem' }}>{detail.value}</div>
                   )}
-
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <Input
-                      label="Mother's Name *"
-                      placeholder="Your full name"
-                      value={form.motherName}
-                      onChange={e => setForm({ ...form, motherName: e.target.value })}
-                      required
-                    />
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <Input
-                        label="Phone Number *"
-                        type="tel"
-                        placeholder="+91 XXXXX XXXXX"
-                        value={form.phone}
-                        onChange={e => setForm({ ...form, phone: e.target.value })}
-                        required
-                      />
-                      <Input
-                        label="Email (Optional)"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={form.email}
-                        onChange={e => setForm({ ...form, email: e.target.value })}
-                      />
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <Input
-                        label="Due / Birth Date"
-                        type="date"
-                        placeholder="dd-mm-yyyy"
-                        value={form.dueDate}
-                        onChange={e => setForm({ ...form, dueDate: e.target.value })}
-                      />
-                      <Input
-                        label="City"
-                        placeholder="Your city (e.g. Ahmedabad)"
-                        value={form.city}
-                        onChange={e => setForm({ ...form, city: e.target.value })}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-semibold text-dark-700 mb-1">
-                        Service Required *
-                      </label>
-                      <select
-                        className="w-full px-4 py-3 bg-white border border-dark-200 rounded-xl text-dark-950 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 text-sm font-medium"
-                        value={form.serviceRequired}
-                        onChange={e => setForm({ ...form, serviceRequired: e.target.value })}
-                        required
-                      >
-                        <option value="">Select a service...</option>
-                        {SERVICES.map(service => (
-                          <option key={service.id} value={service.name}>
-                            {service.icon} {service.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <Input
-                      label="Any Special Requirements"
-                      type="textarea"
-                      placeholder="Any specific care requests or recovery conditions..."
-                      value={form.specialRequirements}
-                      onChange={e => setForm({ ...form, specialRequirements: e.target.value })}
-                    />
-
-                    <Button type="submit" size="lg" className="w-full mt-4" loading={loading}>
-                      Book Free Consultation
-                    </Button>
-                  </form>
                 </div>
-              )}
-            </div>
+              </div>
+            ))}
+
+            {/* WhatsApp CTA */}
+            <a
+              href="https://wa.me/919898809630?text=Hi%20Natura!%20I%27d%20like%20to%20know%20more%20about%20your%20postnatal%20care%20packages%20in%20Gujarat."
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginTop: '2rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: '#25D366',
+                color: '#fff',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '50px',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: '0.9rem',
+                transition: 'background 0.3s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#1ebe5c'}
+              onMouseLeave={e => e.currentTarget.style.background = '#25D366'}
+            >
+              💬 Chat on WhatsApp
+            </a>
+          </div>
+
+          {/* Right: Form */}
+          <div style={{ background: 'var(--cream)', borderRadius: '24px', padding: '2.5rem' }}>
+            <h2 style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: '1.6rem', marginBottom: '1.5rem', color: 'var(--charcoal)',
+            }}>Book Free Consultation</h2>
+
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+                <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>✅</div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', color: 'var(--charcoal)', marginBottom: '0.5rem' }}>
+                  Consultation Requested!
+                </h3>
+                <p style={{ color: 'var(--warm-gray)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                  Thank you for reaching out. A Natura coordinator will call or WhatsApp you within 2 hours.
+                </p>
+                <button
+                  onClick={() => { setSubmitted(false); setForm({ motherName: '', phone: '', dueDate: '', city: '', serviceRequired: '', specialRequirements: '' }); }}
+                  style={{
+                    background: 'var(--terracotta)', color: '#fff', padding: '0.75rem 2rem',
+                    borderRadius: '50px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '0.9rem', fontWeight: 500,
+                  }}
+                >
+                  Request Another Consultation
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                {error && (
+                  <div style={{
+                    marginBottom: '1rem', padding: '0.75rem 1rem',
+                    background: '#fef2f2', border: '1px solid #fecaca',
+                    borderRadius: '8px', color: '#dc2626', fontSize: '0.85rem',
+                  }}>{error}</div>
+                )}
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
+                  <div style={{ marginBottom: '1.2rem' }}>
+                    <label style={labelStyle}>Mother's Name</label>
+                    <input type="text" placeholder="Your full name" value={form.motherName} onChange={e => setForm({ ...form, motherName: e.target.value })} style={inputStyle} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} required />
+                  </div>
+                  <div style={{ marginBottom: '1.2rem' }}>
+                    <label style={labelStyle}>Phone Number</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} style={inputStyle} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} required />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
+                  <div style={{ marginBottom: '1.2rem' }}>
+                    <label style={labelStyle}>Due / Birth Date</label>
+                    <input type="date" value={form.dueDate} onChange={e => setForm({ ...form, dueDate: e.target.value })} style={inputStyle} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} />
+                  </div>
+                  <div style={{ marginBottom: '1.2rem' }}>
+                    <label style={labelStyle}>City</label>
+                    <input type="text" placeholder="Your city" value={form.city} onChange={e => setForm({ ...form, city: e.target.value })} style={inputStyle} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: '1.2rem' }}>
+                  <label style={labelStyle}>Service Required</label>
+                  <select value={form.serviceRequired} onChange={e => setForm({ ...form, serviceRequired: e.target.value })} style={{ ...inputStyle, appearance: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} required>
+                    <option value="">Select a service...</option>
+                    <optgroup label="Trial Packages">
+                      <option>7-Day Trial Package</option>
+                      <option>14-Day Trial Package</option>
+                    </optgroup>
+                    <optgroup label="Individual Services">
+                      {SERVICES.map(s => <option key={s.id} value={s.name}>{s.name}</option>)}
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div style={{ marginBottom: '1.2rem' }}>
+                  <label style={labelStyle}>Any Special Requirements</label>
+                  <textarea placeholder="Tell us about any specific needs, medical conditions, or questions..." value={form.specialRequirements} onChange={e => setForm({ ...form, specialRequirements: e.target.value })} style={{ ...inputStyle, height: '100px', resize: 'vertical' }} onFocus={e => e.target.style.borderColor = 'var(--terracotta)'} onBlur={e => e.target.style.borderColor = 'var(--light-gray)'} />
+                </div>
+
+                <button type="submit" disabled={loading} style={{
+                  width: '100%', padding: '1rem',
+                  background: loading ? 'var(--warm-gray)' : 'var(--terracotta)',
+                  color: '#fff', border: 'none', borderRadius: '50px',
+                  fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', fontWeight: 500,
+                  cursor: loading ? 'not-allowed' : 'pointer', transition: 'background 0.3s, transform 0.2s',
+                }}
+                  onMouseEnter={e => { if (!loading) { e.target.style.background = 'var(--deep-clay)'; e.target.style.transform = 'translateY(-2px)'; }}}
+                  onMouseLeave={e => { if (!loading) { e.target.style.background = 'var(--terracotta)'; e.target.style.transform = ''; }}}
+                >
+                  {loading ? 'Sending...' : 'Request Free Consultation →'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .contact-page-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .form-row { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }
+
+const labelStyle = {
+  fontSize: '0.78rem', fontWeight: 500, color: 'var(--warm-gray)',
+  letterSpacing: '0.05em', textTransform: 'uppercase', display: 'block', marginBottom: '0.4rem',
+};
+
+const inputStyle = {
+  width: '100%', padding: '0.85rem 1rem',
+  background: 'var(--warm-white)', border: '1.5px solid var(--light-gray)',
+  borderRadius: '12px', fontFamily: "'DM Sans', sans-serif",
+  fontSize: '0.9rem', color: 'var(--charcoal)',
+  transition: 'border-color 0.3s', outline: 'none',
+};

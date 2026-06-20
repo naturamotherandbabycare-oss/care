@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Natura Baby & Mother Care — Postnatal Mother & Baby Care</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF6EF;
+      --warm-white: #FDF9F4;
+      --blush: #F2D9CE;
+      --dusty-rose: #D9A89A;
+      --terracotta: #C4715A;
+      --deep-clay: #8B4A38;
+      --sage: #8DA88A;
+      --soft-sage: #C8DABC;
+      --charcoal: #2C2422;
+      --warm-gray: #7A6E6B;
+      --light-gray: #E8E0DC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(250, 246, 239, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196, 113, 90, 0.15);
+      animation: fadeDown 0.8s ease both;
+    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--deep-clay); letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--terracotta); font-style: italic; }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--warm-gray);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .nav-cta {
+      background: var(--terracotta); color: #fff !important;
+      padding: 0.55rem 1.4rem; border-radius: 50px;
+      font-size: 0.82rem !important; transition: background 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--deep-clay) !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; right: -10%; top: -20%;
+      width: 70%; height: 130%;
+      background: radial-gradient(ellipse at 60% 40%, var(--blush) 0%, var(--soft-sage) 60%, transparent 80%);
+      opacity: 0.4; border-radius: 50%;
+      animation: pulseBlob 8s ease-in-out infinite alternate;
+    }
+    @keyframes pulseBlob { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.08) rotate(6deg); } }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--soft-sage); color: var(--deep-clay);
+      padding: 0.4rem 1rem; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-badge::before { content: '✦'; font-size: 0.6rem; }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--charcoal);
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+
+    .hero-desc {
+      font-size: 1.05rem; color: var(--warm-gray);
+      line-height: 1.75; max-width: 480px;
+      margin: 1.8rem 0 2.5rem;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.65s ease both;
+    }
+
+    .btn-primary {
+      background: var(--terracotta); color: #fff;
+      padding: 0.9rem 2rem; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--deep-clay); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,74,56,0.25); }
+
+    .btn-outline {
+      border: 1.5px solid var(--terracotta); color: var(--terracotta);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.3s; background: transparent; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-outline:hover { background: var(--terracotta); color: #fff; transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+
+    .hero-card-wrap {
+      position: relative; width: 420px; height: 520px;
+    }
+
+    .hero-main-card {
+      width: 340px; height: 440px;
+      background: linear-gradient(145deg, var(--blush), var(--dusty-rose));
+      border-radius: 24px 24px 80px 24px;
+      position: absolute; top: 40px; left: 40px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 2rem;
+      overflow: hidden; box-shadow: 0 30px 60px rgba(196,113,90,0.2);
+    }
+
+    .hero-main-card::before {
+      content: '🤱';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      font-size: 9rem; opacity: 0.35;
+    }
+
+    .hero-main-card .card-tag {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+      color: var(--deep-clay);
+      padding: 0.35rem 0.9rem; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 500;
+      display: inline-block; margin-bottom: 0.6rem;
+    }
+    .hero-main-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--deep-clay); font-weight: 600;
+    }
+
+    .hero-float-card {
+      position: absolute; background: #fff;
+      border-radius: 16px; padding: 1rem 1.3rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .hero-float-card.card-1 { top: 0; right: 0; width: 160px; }
+    .hero-float-card.card-2 { bottom: 0; left: 0; width: 170px; }
+    .hero-float-card .fc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--terracotta); font-weight: 600; line-height: 1;
+    }
+    .hero-float-card .fc-label {
+      font-size: 0.72rem; color: var(--warm-gray); margin-top: 0.2rem;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--charcoal);
+      padding: 2rem 5%;
+      display: flex; justify-content: space-around; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; color: var(--dusty-rose); font-weight: 300;
+    }
+    .stat-item .lbl {
+      font-size: 0.78rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 6rem 5%; }
+
+    .section-eyebrow {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300;
+      line-height: 1.15; color: var(--charcoal);
+    }
+    .section-title em { font-style: italic; color: var(--terracotta); }
+
+    /* ── SERVICES ── */
+    #services { background: var(--warm-white); }
+
+    .services-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: end; gap: 2rem; margin-bottom: 4rem;
+    }
+    .services-header p {
+      color: var(--warm-gray); line-height: 1.7; font-size: 0.98rem;
+      align-self: end;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--cream); border-radius: 20px;
+      padding: 2.2rem; position: relative; overflow: hidden;
+      transition: transform 0.35s, box-shadow 0.35s;
+      cursor: default;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+
+    .service-card.featured {
+      background: var(--terracotta); color: #fff;
+      grid-row: span 1;
+    }
+
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 1.5rem;
+    }
+    .service-card:not(.featured) .service-icon { background: var(--blush); }
+    .service-card.featured .service-icon { background: rgba(255,255,255,0.2); }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 600; margin-bottom: 0.8rem;
+    }
+    .service-card.featured h3 { color: #fff; }
+
+    .service-card p { font-size: 0.88rem; line-height: 1.7; color: var(--warm-gray); }
+    .service-card.featured p { color: rgba(255,255,255,0.8); }
+
+    .service-card .service-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.3rem;
+    }
+    .service-tag {
+      font-size: 0.72rem; padding: 0.3rem 0.75rem; border-radius: 50px;
+      font-weight: 500;
+    }
+    .service-card:not(.featured) .service-tag {
+      background: var(--light-gray); color: var(--warm-gray);
+    }
+    .service-card.featured .service-tag {
+      background: rgba(255,255,255,0.2); color: #fff;
+    }
+
+    .service-arrow {
+      position: absolute; right: 1.5rem; top: 1.5rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: transform 0.3s;
+    }
+    .service-card:not(.featured) .service-arrow { background: var(--light-gray); color: var(--warm-gray); }
+    .service-card.featured .service-arrow { background: rgba(255,255,255,0.2); color: #fff; }
+    .service-card:hover .service-arrow { transform: translate(3px, -3px); }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--cream); }
+
+    .how-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center; margin-top: 3rem;
+    }
+    .how-steps { display: flex; flex-direction: column; gap: 2rem; }
+
+    .how-step {
+      display: flex; gap: 1.4rem; align-items: flex-start;
+      opacity: 0; animation: fadeUp 0.6s ease both;
+    }
+    .how-step:nth-child(1) { animation-delay: 0.1s; }
+    .how-step:nth-child(2) { animation-delay: 0.25s; }
+    .how-step:nth-child(3) { animation-delay: 0.4s; }
+    .how-step:nth-child(4) { animation-delay: 0.55s; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: var(--light-gray);
+      line-height: 1; min-width: 50px;
+    }
+    .step-content h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 0.4rem;
+      color: var(--charcoal);
+    }
+    .step-content p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.65; }
+
+    .how-visual {
+      background: linear-gradient(135deg, var(--blush) 0%, var(--soft-sage) 100%);
+      border-radius: 30px; padding: 3rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    .how-card {
+      background: #fff; border-radius: 16px; padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .how-card-icon { font-size: 1.8rem; }
+    .how-card-text h5 { font-size: 0.92rem; font-weight: 500; color: var(--charcoal); }
+    .how-card-text p { font-size: 0.78rem; color: var(--warm-gray); margin-top: 0.15rem; }
+
+    /* ── CAREGIVERS ── */
+    #caregivers { background: var(--warm-white); }
+
+    .caregivers-header { text-align: center; margin-bottom: 3.5rem; }
+    .caregivers-header .section-title { max-width: 540px; margin: 0 auto; }
+    .caregivers-header p { color: var(--warm-gray); margin-top: 1rem; font-size: 0.95rem; }
+
+    .caregivers-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+
+    .caregiver-card {
+      background: var(--cream); border-radius: 24px;
+      padding: 2rem; text-align: center;
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+    .caregiver-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+    .caregiver-avatar {
+      width: 90px; height: 90px; border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative;
+    }
+    .caregiver-avatar::after {
+      content: '✓';
+      position: absolute; bottom: 2px; right: 2px;
+      background: var(--sage); color: #fff;
+      width: 22px; height: 22px; border-radius: 50%;
+      font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+    }
+
+    .caregiver-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; margin-bottom: 0.2rem;
+    }
+    .caregiver-role {
+      font-size: 0.78rem; color: var(--terracotta); font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .caregiver-card p { font-size: 0.85rem; color: var(--warm-gray); line-height: 1.65; }
+
+    .caregiver-skills {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.4rem; margin-top: 1.2rem;
+    }
+    .skill-tag {
+      background: var(--blush); color: var(--deep-clay);
+      font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 50px; font-weight: 500;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--charcoal); }
+    #testimonials .section-eyebrow { color: var(--dusty-rose); }
+    #testimonials .section-title { color: var(--cream); }
+
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 2rem;
+      transition: border-color 0.3s;
+    }
+    .testimonial-card:hover { border-color: rgba(217,168,154,0.4); }
+
+    .stars { color: var(--dusty-rose); font-size: 0.9rem; margin-bottom: 1rem; }
+
+    .testimonial-card blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic;
+      color: rgba(250,246,239,0.85); line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author { display: flex; align-items: center; gap: 0.9rem; }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--blush); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .author-name { font-size: 0.88rem; font-weight: 500; color: var(--cream); }
+    .author-detail { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.1rem; }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--cream); }
+
+    .pricing-header { text-align: center; margin-bottom: 3.5rem; }
+    .pricing-header p { color: var(--warm-gray); margin-top: 0.8rem; font-size: 0.95rem; }
+
+    .pricing-section-label {
+      text-align: center; margin-bottom: 1.2rem;
+    }
+    .pricing-section-label span {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--warm-gray);
+      padding: 0.4rem 1.2rem; border-radius: 50px;
+      border: 1.5px dashed var(--light-gray);
+    }
+
+    .pricing-trial-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      max-width: 700px; margin: 0 auto 2rem;
+    }
+
+    .pricing-card.trial {
+      border: 2px dashed var(--dusty-rose);
+      background: linear-gradient(135deg, #FDF9F4 0%, #FAF0EB 100%);
+      position: relative;
+    }
+
+    .trial-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--dusty-rose); color: #fff;
+      font-size: 0.7rem; padding: 0.3rem 1rem; border-radius: 50px;
+      font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pricing-card.trial .plan-name { color: var(--dusty-rose); }
+    .pricing-card.trial .price { color: var(--deep-clay); }
+    .pricing-card.trial .plan-btn {
+      background: var(--blush); color: var(--deep-clay); border: none;
+    }
+    .pricing-card.trial .plan-btn:hover {
+      background: var(--dusty-rose); color: #fff;
+    }
+    .pricing-card.trial .plan-features li::before { color: var(--dusty-rose); }
+
+    .pricing-divider {
+      text-align: center; margin: 1.5rem auto 2rem;
+      max-width: 960px; position: relative;
+    }
+    .pricing-divider::before {
+      content: ''; position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: var(--light-gray);
+    }
+    .pricing-divider span {
+      position: relative; background: var(--cream);
+      padding: 0 1.2rem; font-size: 0.75rem; font-weight: 500;
+      color: var(--warm-gray); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 960px; margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--warm-white); border-radius: 24px;
+      padding: 2.5rem 2rem; position: relative;
+      border: 2px solid transparent;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.popular {
+      border-color: var(--terracotta);
+      background: var(--terracotta); color: #fff;
+    }
+
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--deep-clay); color: #fff;
+      font-size: 0.7rem; padding: 0.3rem 1rem; border-radius: 50px;
+      font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.5rem;
+    }
+    .pricing-card.popular .plan-name { color: rgba(255,255,255,0.7); }
+
+    .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; line-height: 1;
+      color: var(--charcoal); margin-bottom: 0.3rem;
+    }
+    .pricing-card.popular .price { color: #fff; }
+    .price span { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; display: inline-block; }
+
+    .price-period { font-size: 0.8rem; color: var(--warm-gray); margin-bottom: 1.8rem; }
+    .pricing-card.popular .price-period { color: rgba(255,255,255,0.6); }
+
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .plan-features li {
+      font-size: 0.86rem; color: var(--warm-gray);
+      display: flex; align-items: flex-start; gap: 0.6rem;
+    }
+    .pricing-card.popular .plan-features li { color: rgba(255,255,255,0.85); }
+    .plan-features li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .pricing-card.popular .plan-features li::before { color: var(--soft-sage); }
+
+    .plan-btn {
+      display: block; text-align: center; padding: 0.9rem;
+      border-radius: 50px; font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; width: 100%;
+    }
+    .pricing-card:not(.popular) .plan-btn {
+      background: var(--light-gray); color: var(--charcoal);
+    }
+    .pricing-card:not(.popular) .plan-btn:hover {
+      background: var(--terracotta); color: #fff;
+    }
+    .pricing-card.popular .plan-btn {
+      background: #fff; color: var(--terracotta);
+    }
+    .pricing-card.popular .plan-btn:hover { background: var(--cream); }
+
+    /* ── CONTACT / BOOKING ── */
+    #contact { background: var(--warm-white); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; margin-bottom: 1.2rem;
+    }
+    .contact-info h2 em { font-style: italic; color: var(--terracotta); }
+    .contact-info p { color: var(--warm-gray); line-height: 1.7; margin-bottom: 2rem; font-size: 0.95rem; }
+
+    .contact-detail {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+    }
+    .contact-detail-icon {
+      width: 44px; height: 44px; background: var(--blush);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .contact-detail-text .label { font-size: 0.75rem; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.08em; }
+    .contact-detail-text .value { font-size: 0.92rem; color: var(--charcoal); font-weight: 500; margin-top: 0.1rem; }
+
+    .booking-form {
+      background: var(--cream); border-radius: 24px; padding: 2.5rem;
+    }
+    .booking-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; margin-bottom: 1.5rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { font-size: 0.78rem; font-weight: 500; color: var(--warm-gray); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      background: var(--warm-white); border: 1.5px solid var(--light-gray);
+      border-radius: 12px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--charcoal);
+      transition: border-color 0.3s; outline: none; appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--terracotta); }
+    .form-group textarea { height: 100px; resize: vertical; }
+
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--terracotta); color: #fff;
+      border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .form-submit:hover { background: var(--deep-clay); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 600; color: var(--cream);
+    }
+    .footer-brand .logo em { font-style: italic; color: var(--dusty-rose); }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+
+    .footer-col h4 {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.65); font-size: 0.88rem; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-col ul li a:hover { color: var(--dusty-rose); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem; display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 7rem; }
+      .hero-visual { display: none; }
+      .services-header { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+      .caregivers-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .caregivers-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── scroll-triggered reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Natura <span>Baby & Mother Care</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#caregivers">Our Team</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Certified Postnatal Care</div>
+    <h1>Gentle care for <em>mothers</em> &amp; newborns</h1>
+    <p class="hero-desc">Professional postnatal support that nurtures both mother and baby through the most transformative chapter of life — with warmth, expertise, and deep compassion.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Consultation →</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-wrap">
+      <div class="hero-main-card">
+        <span class="card-tag">Expert Care</span>
+        <h3>Your postnatal companion</h3>
+      </div>
+      <div class="hero-float-card card-1">
+        <div class="fc-num">500+</div>
+        <div class="fc-label">Happy Families Served</div>
+      </div>
+      <div class="hero-float-card card-2">
+        <div class="fc-num">24/7</div>
+        <div class="fc-label">On-Call Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="num">500+</div><div class="lbl">Families Served</div></div>
+  <div class="stat-item"><div class="num">98%</div><div class="lbl">Satisfaction Rate</div></div>
+  <div class="stat-item"><div class="num">50+</div><div class="lbl">Certified Caregivers</div></div>
+  <div class="stat-item"><div class="num">7+</div><div class="lbl">Years Experience</div></div>
+  <div class="stat-item"><div class="num">24/7</div><div class="lbl">Support Available</div></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Holistic care for <em>every need</em></h2>
+    </div>
+    <p>From the first day home with your newborn to weeks of recovery, Natura Baby & Mother Care provides compassionate, professional services tailored entirely to you.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🤱</div>
+      <span class="service-arrow">↗</span>
+      <h3>Postnatal Mother Care</h3>
+      <p>Comprehensive recovery support including nutrition planning, wound care, lactation guidance, and emotional wellness for new mothers.</p>
+      <div class="service-tags">
+        <span class="service-tag">Nutrition</span>
+        <span class="service-tag">Lactation</span>
+        <span class="service-tag">Recovery</span>
+      </div>
+    </div>
+
+    <div class="service-card featured reveal">
+      <div class="service-icon">👶</div>
+      <span class="service-arrow">↗</span>
+      <h3>Newborn Baby Care</h3>
+      <p>Expert newborn care covering feeding schedules, bath routines, sleep training, developmental milestones, and around-the-clock baby monitoring.</p>
+      <div class="service-tags">
+        <span class="service-tag">Feeding</span>
+        <span class="service-tag">Sleep Training</span>
+        <span class="service-tag">Development</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🏠</div>
+      <span class="service-arrow">↗</span>
+      <h3>Live-In Caretaker</h3>
+      <p>Round-the-clock live-in support from certified caregivers so the whole family can rest, recover, and bond without worry.</p>
+      <div class="service-tags">
+        <span class="service-tag">24/7</span>
+        <span class="service-tag">Live-In</span>
+        <span class="service-tag">Full Support</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">💻</div>
+      <span class="service-arrow">↗</span>
+      <h3>Online Pre & Postnatal Consultation</h3>
+      <p>Expert video consultations with our gynaecologists and paediatricians — available before and after birth. Get professional medical advice, birth planning support, and postnatal check-ins from the comfort of your home.</p>
+      <div class="service-tags">
+        <span class="service-tag">Prenatal</span>
+        <span class="service-tag">Postnatal</span>
+        <span class="service-tag">Video Call</span>
+        <span class="service-tag">OB-GYN</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🍲</div>
+      <span class="service-arrow">↗</span>
+      <h3>Postnatal Nutrition</h3>
+      <p>Customized meal preparation with traditional healing foods, galactagogues for milk supply, and balanced recovery diets planned by nutritionists.</p>
+      <div class="service-tags">
+        <span class="service-tag">Meal Prep</span>
+        <span class="service-tag">Healing Foods</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🧠</div>
+      <span class="service-arrow">↗</span>
+      <h3>Holistic Mental & Emotional Healing</h3>
+      <p>A nurturing, whole-person approach to postnatal mental health — combining professional counselling, mindfulness, breathwork, energy healing, and community support to gently overcome postpartum depression, anxiety, and emotional overwhelm. You are never alone in this journey.</p>
+      <div class="service-tags">
+        <span class="service-tag">Postpartum Depression</span>
+        <span class="service-tag">Counselling</span>
+        <span class="service-tag">Mindfulness</span>
+        <span class="service-tag">Breathwork</span>
+        <span class="service-tag">Energy Healing</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">💆</div>
+      <span class="service-arrow">↗</span>
+      <h3>Postnatal Massage</h3>
+      <p>Traditional and therapeutic postnatal massage to aid uterine recovery, reduce swelling, relieve muscle tension, and promote overall healing.</p>
+      <div class="service-tags">
+        <span class="service-tag">Therapeutic</span>
+        <span class="service-tag">Recovery</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">👩‍👧</div>
+      <span class="service-arrow">↗</span>
+      <h3>Trusted & Police Verified Nanny</h3>
+      <p>We provide thoroughly background-checked and police verified nannies for your baby's daily care. Every nanny is trained in infant care, hygiene, feeding, and early development — giving you total confidence and peace of mind.</p>
+      <div class="service-tags">
+        <span class="service-tag">Police Verified</span>
+        <span class="service-tag">Background Checked</span>
+        <span class="service-tag">Infant Care</span>
+        <span class="service-tag">Trained & Certified</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🍼</div>
+      <span class="service-arrow">↗</span>
+      <h3>Babysitting at Your Doorstep</h3>
+      <p>Trusted, certified babysitters come directly to your home so you can rest, recover, or step out with complete peace of mind. Our sitters are trained in infant care, safety, and play-based development.</p>
+      <div class="service-tags">
+        <span class="service-tag">At Home</span>
+        <span class="service-tag">Certified Sitters</span>
+        <span class="service-tag">Infant Care</span>
+        <span class="service-tag">Flexible Hours</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🧘‍♀️</div>
+      <span class="service-arrow">↗</span>
+      <h3>Postnatal Yoga</h3>
+      <p>Gentle, certified postnatal yoga sessions designed to rebuild core strength, improve pelvic floor recovery, ease back pain, and restore energy and balance after childbirth.</p>
+      <div class="service-tags">
+        <span class="service-tag">Core Strength</span>
+        <span class="service-tag">Pelvic Floor</span>
+        <span class="service-tag">Flexibility</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-eyebrow reveal">The Process</div>
+  <h2 class="section-title reveal">Simple steps to <em>exceptional</em> care</h2>
+
+  <div class="how-grid">
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Free Consultation</h4>
+          <p>Book a complimentary consultation to discuss your needs, birth plan, and any special requirements. We match you with the perfect caregiver.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Personalized Care Plan</h4>
+          <p>Our team creates a tailored care plan covering mother's recovery, baby's routines, nutrition, and emotional support — designed just for you.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Meet Your Caregiver</h4>
+          <p>Meet and approve your dedicated caregiver before they begin. All our caregivers are certified, background-verified, and deeply trained.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Care Begins at Home</h4>
+          <p>Your caregiver arrives at your home ready to provide seamless, warm support. We monitor progress and adapt the plan as you and baby grow.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-visual reveal">
+      <div class="how-card">
+        <div class="how-card-icon">🔒</div>
+        <div class="how-card-text">
+          <h5>Background Verified</h5>
+          <p>Every caregiver is police-verified and reference-checked</p>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-card-icon">📋</div>
+        <div class="how-card-text">
+          <h5>Certified Professionals</h5>
+          <p>Trained in postnatal care, infant care & first aid</p>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-card-icon">📱</div>
+        <div class="how-card-text">
+          <h5>Daily Progress Reports</h5>
+          <p>Real-time updates via our app — always stay informed</p>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-card-icon">🔄</div>
+        <div class="how-card-text">
+          <h5>Flexible &amp; Replaceable</h5>
+          <p>Not a good fit? We'll replace your caregiver within 24hrs</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CAREGIVERS -->
+<section id="caregivers">
+  <div class="caregivers-header reveal">
+    <p class="section-eyebrow">Our Medical Team</p>
+    <h2 class="section-title">Qualified doctors & <em>specialist staff</em></h2>
+    <p>From gynaecologists to certified nurses and infant specialists — every member of our team is medically qualified and dedicated to your complete wellbeing at home.</p>
+  </div>
+
+  <div class="caregivers-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="caregiver-card reveal">
+      <div class="caregiver-avatar" style="background: var(--blush);">👩‍⚕️</div>
+      <h3>Dr. Nargis Gohil</h3>
+      <div class="caregiver-role">Senior Gynaecologist</div>
+      <p>15 years of experience in obstetrics & gynaecology. Specialises in postnatal care, C-section wound care, lactation support, and full maternal recovery management.</p>
+      <div class="caregiver-skills">
+        <span class="skill-tag">OB-GYN</span>
+        <span class="skill-tag">C-Section Care</span>
+        <span class="skill-tag">Lactation Support</span>
+        <span class="skill-tag">Postnatal Recovery</span>
+      </div>
+    </div>
+
+    <div class="caregiver-card reveal">
+      <div class="caregiver-avatar" style="background: var(--soft-sage);">👨‍⚕️</div>
+      <h3>Dr. Rajesh Gohil</h3>
+      <div class="caregiver-role">Senior Paediatrician</div>
+      <p>15 years of experience in newborn and child health. Offers online video consultations for infant check-ups, developmental assessments, vaccinations guidance, and newborn medical queries — from the comfort of your home.</p>
+      <div class="caregiver-skills">
+        <span class="skill-tag">Online Consultation</span>
+        <span class="skill-tag">Newborn Health</span>
+        <span class="skill-tag">Development</span>
+      </div>
+    </div>
+
+    <div class="caregiver-card reveal">
+      <div class="caregiver-avatar" style="background: var(--blush);">👩‍⚕️</div>
+      <h3>Dr. Shivangi Desai</h3>
+      <div class="caregiver-role">Senior Homeopathy & Dietician</div>
+      <p>15 years of experience combining advanced homeopathic treatment with expert dietary guidance for postnatal recovery, baby health, hormonal balance, and complete family wellness.</p>
+      <div class="caregiver-skills">
+        <span class="skill-tag">Senior Homeopathy</span>
+        <span class="skill-tag">Dietician</span>
+        <span class="skill-tag">Holistic Healing</span>
+        <span class="skill-tag">Postnatal Recovery</span>
+      </div>
+    </div>
+
+    <div class="caregiver-card reveal">
+      <div class="caregiver-avatar" style="background: var(--soft-sage);">👩‍🍽️</div>
+      <h3>Shreya Oza</h3>
+      <div class="caregiver-role">Dietician</div>
+      <p>Certified dietician specialising in postnatal nutrition, lactation-boosting meal plans, and recovery diets tailored to restore mother's strength and energy after childbirth.</p>
+      <div class="caregiver-skills">
+        <span class="skill-tag">Postnatal Nutrition</span>
+        <span class="skill-tag">Lactation Diet</span>
+        <span class="skill-tag">Meal Planning</span>
+      </div>
+    </div>
+
+    <div class="caregiver-card reveal">
+      <div class="caregiver-avatar" style="background: var(--light-gray);">🧘‍♀️</div>
+      <h3>Ayushi Desai</h3>
+      <div class="caregiver-role">Physiotherapist & Yoga Instructor</div>
+      <p>Expert in postnatal physiotherapy and yoga — helping mothers rebuild core strength, heal pelvic floor muscles, ease back pain, and restore flexibility after delivery.</p>
+      <div class="caregiver-skills">
+        <span class="skill-tag">Physiotherapy</span>
+        <span class="skill-tag">Postnatal Yoga</span>
+        <span class="skill-tag">Pelvic Floor</span>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <p class="section-eyebrow">Testimonials</p>
+    <h2 class="section-title">Stories from <em>our families</em></h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Natura Baby & Mother Care was an absolute blessing. Our caregiver Priya felt like a family member from day one. She helped me recover so much faster while making sure my baby was thriving."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Sunita Kapoor</div>
+          <div class="author-detail">New mother, Mumbai · C-section recovery</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"As a first-time father, I was terrified. Natura's caregiver not only looked after my wife and baby brilliantly, but also taught us everything we needed to know."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">Rohan Mehta</div>
+          <div class="author-detail">First-time parent, Bangalore</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I struggled with postnatal blues and Natura's team noticed before I even said a word. The emotional support alongside the practical care was unlike anything I expected."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Deepa Krishnan</div>
+          <div class="author-detail">Mother of twins, Chennai</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-header reveal">
+    <p class="section-eyebrow">Packages</p>
+    <h2 class="section-title">Transparent, <em>flexible</em> pricing</h2>
+    <p>Choose the plan that works for your family. All packages include a free consultation and can be customized.</p>
+  </div>
+
+  <!-- Trial Packages -->
+  <div class="pricing-section-label reveal"><span>🌸 Try Before You Commit — Trial Packages</span></div>
+  <div class="pricing-trial-grid">
+    <div class="pricing-card trial reveal">
+      <div class="trial-badge">7-Day Trial</div>
+      <div class="plan-name">7-Day Starter</div>
+      <div class="price"><span>₹</span>9,500</div>
+      <div class="price-period">for 7 days · 8 hrs/day</div>
+      <ul class="plan-features">
+        <li>Dedicated day caregiver</li>
+        <li>Newborn baby care basics</li>
+        <li>Mother recovery check-ins</li>
+        <li>Feeding & sleep guidance</li>
+        <li>WhatsApp support</li>
+        <li>Upgrade to monthly anytime</li>
+      </ul>
+      <a href="#contact" class="plan-btn">Start Trial</a>
+    </div>
+
+    <div class="pricing-card trial reveal">
+      <div class="trial-badge">14-Day Trial</div>
+      <div class="plan-name">14-Day Experience</div>
+      <div class="price"><span>₹</span>14,500</div>
+      <div class="price-period">for 14 days · 8 hrs/day</div>
+      <ul class="plan-features">
+        <li>Dedicated day caregiver</li>
+        <li>Full baby & mother care</li>
+        <li>Postnatal nutrition guidance</li>
+        <li>2 postnatal massage sessions</li>
+        <li>Daily progress reports</li>
+        <li>Priority upgrade to monthly</li>
+      </ul>
+      <a href="#contact" class="plan-btn">Start Trial</a>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="pricing-divider reveal"><span>Monthly Packages</span></div>
+
+  <!-- Monthly Packages -->
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="plan-name">Essentials</div>
+      <div class="price"><span>₹</span>18,000</div>
+      <div class="price-period">per month · 8 hrs/day</div>
+      <ul class="plan-features">
+        <li>Dedicated day caregiver</li>
+        <li>Baby care & feeding support</li>
+        <li>Mother wellness check-ins</li>
+        <li>Nutrition guidance</li>
+        <li>WhatsApp support</li>
+      </ul>
+      <a href="#contact" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="pricing-card popular reveal">
+      <div class="popular-badge">Most Popular</div>
+      <div class="plan-name">Complete Care</div>
+      <div class="price"><span>₹</span>30,000</div>
+      <div class="price-period">per month · 12 hrs/day</div>
+      <ul class="plan-features">
+        <li>Dedicated caregiver (12 hrs)</li>
+        <li>Full postnatal mother care</li>
+        <li>Newborn specialist care</li>
+        <li>Postnatal massage (6 sessions)</li>
+        <li>Nutrition & meal planning</li>
+        <li>Daily progress reports</li>
+        <li>24/7 on-call support</li>
+      </ul>
+      <a href="#contact" class="plan-btn">Book Now</a>
+    </div>
+
+    <div class="pricing-card reveal">
+      <div class="plan-name">Premium Live-In</div>
+      <div class="price"><span>₹</span>45,000</div>
+      <div class="price-period">per month · 24/7 live-in</div>
+      <ul class="plan-features">
+        <li>Live-in caregiver (24/7)</li>
+        <li>Two dedicated caregivers</li>
+        <li>Complete postnatal recovery</li>
+        <li>Unlimited massage sessions</li>
+        <li>Chef-prepared postnatal meals</li>
+        <li>Holistic mental & emotional healing</li>
+        <li>Postpartum depression support</li>
+        <li>Priority emergency support</li>
+      </ul>
+      <a href="#contact" class="plan-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / BOOKING -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p class="section-eyebrow">Book a Consultation</p>
+      <h2>Let's talk about <em>your</em> care needs</h2>
+      <p>Reach out and our care coordinators will get back to you within 2 hours. The first consultation is always free — no pressure, no commitment.</p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div class="contact-detail-text">
+          <div class="label">Phone / WhatsApp</div>
+          <div class="value">+91 98988 09630</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📧</div>
+        <div class="contact-detail-text">
+          <div class="label">Email</div>
+          <div class="value">hello@naturababycare.in</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div class="contact-detail-text">
+          <div class="label">Service Areas</div>
+          <div class="value">Now in Ahmedabad · Surat · Bhavnagar · Rajkot</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <div class="contact-detail-text">
+          <div class="label">Response Time</div>
+          <div class="value">Within 2 hours · 7 days a week</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form reveal">
+      <h3>Book Free Consultation</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Mother's Name</label>
+          <input type="text" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Due / Birth Date</label>
+          <input type="date" />
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" placeholder="Your city" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service Required</label>
+        <select>
+          <option value="">Select a service...</option>
+          <optgroup label="Trial Packages">
+            <option>7-Day Trial Package</option>
+            <option>14-Day Trial Package</option>
+          </optgroup>
+          <optgroup label="Monthly Packages">
+            <option>Essentials (₹18,000/month)</option>
+            <option>Complete Care (₹30,000/month)</option>
+            <option>Premium Live-In (₹45,000/month)</option>
+          </optgroup>
+          <optgroup label="Individual Services">
+            <option>Postnatal Mother Care</option>
+            <option>Newborn Baby Care</option>
+            <option>Live-In Caretaker</option>
+            <option>Postnatal Nutrition</option>
+            <option>Postnatal Massage</option>
+            <option>Postnatal Yoga</option>
+            <option>Holistic Mental & Emotional Healing</option>
+            <option>Postpartum Depression Support</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Any Special Requirements</label>
+        <textarea placeholder="Tell us about any specific needs, medical conditions, or questions..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Request Free Consultation →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Natura <em>Baby & Mother Care</em></div>
+      <p>Professional postnatal care for mothers and babies — delivered with compassion, expertise, and love since 2017.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Mother Care</a></li>
+        <li><a href="#services">Baby Care</a></li>
+        <li><a href="#services">Live-In Caretaker</a></li>
+        <li><a href="#services">Nutrition</a></li>
+        <li><a href="#services">Postnatal Massage</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#caregivers">Our Team</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Caregiver Login</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Natura Baby & Mother Care. All rights reserved. Made with ♥ for new families.</p>
+    <p>Now in Ahmedabad · Surat · Bhavnagar · Rajkot</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // how-steps animation
+  const steps = document.querySelectorAll('.how-step');
+  const stepsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.2 });
+  steps.forEach(s => {
+    s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    stepsObserver.observe(s);
+  });
+
+  // Form submit handler
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Request Sent! We\'ll contact you within 2 hours.';
+    btn.style.background = 'var(--sage)';
+    btn.disabled = true;
+  }
+
+  // Smooth nav active state
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.08)' : 'none';
+  });
+</script>
+</body>
+</html>

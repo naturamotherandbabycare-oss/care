@@ -1,35 +1,95 @@
-import { THE_PROCESS } from '../../utils/constants';
+import { THE_PROCESS, PROCESS_BADGES } from '../../utils/constants';
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 bg-dark-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-600">How It Works</span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-dark-900 tracking-tight">
-            Exceptional care in <span className="text-primary-600">4 simple steps</span>
-          </h2>
+    <section id="how" style={{ padding: '6rem 5%', background: 'var(--cream)' }}>
+      <p style={{
+        fontSize: '0.75rem',
+        fontWeight: 500,
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase',
+        color: 'var(--terracotta)',
+        marginBottom: '0.8rem',
+      }}>The Process</p>
+      <h2 style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: 'clamp(2.2rem, 4vw, 3.4rem)',
+        fontWeight: 300,
+        lineHeight: 1.15,
+        color: 'var(--charcoal)',
+        marginBottom: '3rem',
+      }}>
+        Simple steps to <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>exceptional</em> care
+      </h2>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '5rem',
+        alignItems: 'center',
+      }}
+      className="how-grid"
+      >
+        {/* Steps */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {THE_PROCESS.map((step, index) => (
+            <div key={index} style={{ display: 'flex', gap: '1.4rem', alignItems: 'flex-start' }}>
+              <div style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '3rem',
+                fontWeight: 300,
+                color: 'var(--light-gray)',
+                lineHeight: 1,
+                minWidth: '50px',
+              }}>{step.step}</div>
+              <div>
+                <h4 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.3rem',
+                  fontWeight: 600,
+                  marginBottom: '0.4rem',
+                  color: 'var(--charcoal)',
+                }}>{step.title}</h4>
+                <p style={{ fontSize: '0.88rem', color: 'var(--warm-gray)', lineHeight: 1.65 }}>{step.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {THE_PROCESS.map((step, index) => (
-            <div key={index} className="relative text-center group">
-              {/* Connector line */}
-              {index < THE_PROCESS.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-1/2 w-full h-0.5 bg-dark-200" />
-              )}
-              
-              {/* Step number */}
-              <div className="relative z-10 w-20 h-20 mx-auto rounded-2xl gradient-primary text-white flex items-center justify-center text-2xl font-bold shadow-lg shadow-primary-600/30 group-hover:shadow-primary-600/50 transition-all duration-300 group-hover:-translate-y-1">
-                {step.step}
+        {/* Visual Panel */}
+        <div style={{
+          background: 'linear-gradient(135deg, var(--blush) 0%, var(--soft-sage) 100%)',
+          borderRadius: '30px',
+          padding: '3rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+        }}>
+          {PROCESS_BADGES.map((badge, index) => (
+            <div key={index} style={{
+              background: '#fff',
+              borderRadius: '16px',
+              padding: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
+            }}>
+              <div style={{ fontSize: '1.8rem' }}>{badge.icon}</div>
+              <div>
+                <h5 style={{ fontSize: '0.92rem', fontWeight: 500, color: 'var(--charcoal)' }}>{badge.title}</h5>
+                <p style={{ fontSize: '0.78rem', color: 'var(--warm-gray)', marginTop: '0.15rem' }}>{badge.desc}</p>
               </div>
-              
-              <h3 className="mt-5 text-lg font-bold text-dark-900">{step.title}</h3>
-              <p className="mt-2 text-sm text-dark-500 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .how-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+        }
+      `}</style>
     </section>
   );
 }

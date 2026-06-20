@@ -1,83 +1,121 @@
 import { SERVICES } from '../utils/constants';
 import { Link } from 'react-router-dom';
-import Button from '../components/ui/Button';
 
 export default function ServicesPage() {
   return (
-    <div className="pt-24">
+    <div style={{ paddingTop: '80px', background: 'var(--cream)' }}>
+
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-dark-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-600">Our Services</span>
-          <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold text-dark-900 tracking-tight">
-            Holistic care for <span className="text-primary-600">every need</span>
-          </h1>
-          <p className="mt-4 text-lg text-dark-500 max-w-2xl mx-auto">
-            From the first day home with your newborn to weeks of recovery, Natura Baby & Mother Care provides compassionate, professional services tailored entirely to you.
-          </p>
-        </div>
+      <section style={{
+        padding: '5rem 5% 4rem',
+        background: 'var(--warm-white)',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontSize: '0.75rem',
+          fontWeight: 500,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--terracotta)',
+          marginBottom: '0.8rem',
+        }}>What We Offer</p>
+        <h1 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+          fontWeight: 300,
+          lineHeight: 1.1,
+          color: 'var(--charcoal)',
+          marginBottom: '1rem',
+        }}>
+          Holistic care for <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>every need</em>
+        </h1>
+        <p style={{ color: 'var(--warm-gray)', lineHeight: 1.7, fontSize: '0.98rem', maxWidth: '600px', margin: '0 auto' }}>
+          From the first day home with your newborn to weeks of recovery, Natura Baby &amp; Mother Care provides compassionate, professional services tailored entirely to you.
+        </p>
       </section>
 
-      {/* Services */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            {SERVICES.map((service, index) => (
-              <div 
+      {/* Services Grid */}
+      <section style={{ padding: '6rem 5%', background: 'var(--warm-white)' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '1.5rem',
+        }}
+        className="services-page-grid"
+        >
+          {SERVICES.map((service, index) => {
+            const isFeatured = index === 1;
+            return (
+              <div
                 key={service.id}
-                className={`rounded-2xl border border-dark-100 overflow-hidden hover:shadow-xl transition-all duration-300 ${index % 2 === 0 ? '' : 'bg-dark-50'}`}
+                style={{
+                  background: isFeatured ? 'var(--terracotta)' : 'var(--cream)',
+                  borderRadius: '20px',
+                  padding: '2.2rem',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'transform 0.35s, box-shadow 0.35s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.08)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
               >
-                <div className="grid md:grid-cols-3 gap-0">
-                  {/* Left: Service Info */}
-                  <div className="md:col-span-2 p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-primary-100 flex items-center justify-center text-2xl shrink-0">
-                        {service.icon}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-xl font-bold text-dark-900">{service.name}</h3>
-                          <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
-                            {service.category}
-                          </span>
-                        </div>
-                        <p className="text-dark-500 leading-relaxed">{service.description}</p>
-                        
-                        {/* Features */}
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {service.features.map((feature, fi) => (
-                            <span key={fi} className="text-xs bg-dark-100 text-dark-600 px-3 py-1 rounded-full font-medium">
-                              ✓ {feature}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <span style={{
+                  position: 'absolute', right: '1.5rem', top: '1.5rem',
+                  width: '36px', height: '36px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1rem',
+                  background: isFeatured ? 'rgba(255,255,255,0.2)' : 'var(--light-gray)',
+                  color: isFeatured ? '#fff' : 'var(--warm-gray)',
+                }}>↗</span>
 
-                  {/* Right: Action */}
-                  <div className="p-8 flex flex-col items-center justify-center bg-dark-50 border-l border-dark-100">
-                    <div className="text-center">
-                      <div className="text-xs uppercase tracking-wider text-dark-400 font-semibold">Duration / Shift</div>
-                      <div className="text-sm text-dark-500 font-medium mt-1">{service.duration}</div>
-                      <Link to="/contact" className="mt-4 inline-block">
-                        <Button size="sm">Book Now</Button>
-                      </Link>
-                    </div>
-                  </div>
+                <div style={{
+                  width: '52px', height: '52px', borderRadius: '14px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.6rem', marginBottom: '1.5rem',
+                  background: isFeatured ? 'rgba(255,255,255,0.2)' : 'var(--blush)',
+                }}>{service.icon}</div>
+
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.45rem', fontWeight: 600, marginBottom: '0.8rem',
+                  color: isFeatured ? '#fff' : 'var(--charcoal)',
+                }}>{service.name}</h3>
+
+                <p style={{
+                  fontSize: '0.88rem', lineHeight: 1.7,
+                  color: isFeatured ? 'rgba(255,255,255,0.8)' : 'var(--warm-gray)',
+                }}>{service.description}</p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '1.3rem' }}>
+                  {service.features.map((tag, ti) => (
+                    <span key={ti} style={{
+                      fontSize: '0.72rem', padding: '0.3rem 0.75rem', borderRadius: '50px', fontWeight: 500,
+                      background: isFeatured ? 'rgba(255,255,255,0.2)' : 'var(--light-gray)',
+                      color: isFeatured ? '#fff' : 'var(--warm-gray)',
+                    }}>{tag}</span>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-dark-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-dark-900 text-center mb-10">
-            Frequently Asked <span className="text-primary-600">Questions</span>
+      <section style={{ padding: '6rem 5%', background: 'var(--cream)' }}>
+        <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <p style={{
+            fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em',
+            textTransform: 'uppercase', color: 'var(--terracotta)', marginBottom: '0.8rem', textAlign: 'center',
+          }}>FAQs</p>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300,
+            color: 'var(--charcoal)', marginBottom: '3rem', textAlign: 'center',
+          }}>
+            Frequently asked <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>questions</em>
           </h2>
+
           {[
             { q: 'How do I book a caregiver?', a: 'Simply click "Book Now" or request a free consultation, select your preferred schedule, and fill out your details. Our coordinators will match you with a caregiver within 2 hours.' },
             { q: 'Are your caregivers verified?', a: 'Yes. Every caregiver is police-verified, reference-checked, and background-certified to ensure absolute safety for your home and family.' },
@@ -85,18 +123,62 @@ export default function ServicesPage() {
             { q: 'What if the caregiver is not a good fit?', a: 'If you feel the caregiver is not a fit, we guarantee a replacement within 24 hours, no questions asked.' },
             { q: 'How do you monitor daily progress?', a: 'Our caregivers provide daily logs detailing baby feeding times, sleep schedules, mother\'s recovery progress, and wellness checks.' },
           ].map((faq, i) => (
-            <details key={i} className="group mb-4 bg-white rounded-xl border border-dark-100 overflow-hidden">
-              <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-dark-900 hover:text-primary-600 transition-colors">
+            <details key={i} style={{
+              marginBottom: '1rem',
+              background: 'var(--warm-white)',
+              borderRadius: '16px',
+              border: '1.5px solid var(--light-gray)',
+              overflow: 'hidden',
+            }}>
+              <summary style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '1.2rem 1.5rem', cursor: 'pointer',
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '1.1rem', fontWeight: 600, color: 'var(--charcoal)',
+                listStyle: 'none',
+              }}>
                 {faq.q}
-                <span className="ml-2 text-dark-400 group-open:rotate-180 transition-transform duration-200">▾</span>
+                <span style={{ marginLeft: '1rem', color: 'var(--terracotta)', fontSize: '1.2rem' }}>+</span>
               </summary>
-              <div className="px-5 pb-5 text-dark-500 text-sm leading-relaxed">
+              <div style={{ padding: '0 1.5rem 1.2rem', fontSize: '0.9rem', color: 'var(--warm-gray)', lineHeight: 1.7 }}>
                 {faq.a}
               </div>
             </details>
           ))}
         </div>
       </section>
+
+      {/* Book CTA */}
+      <section style={{ padding: '4rem 5%', background: 'var(--warm-white)', textAlign: 'center' }}>
+        <h2 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: 'clamp(2rem, 3vw, 2.8rem)', fontWeight: 300, color: 'var(--charcoal)', marginBottom: '1rem',
+        }}>
+          Ready to get <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>started?</em>
+        </h2>
+        <p style={{ color: 'var(--warm-gray)', marginBottom: '2rem', fontSize: '0.95rem' }}>
+          Book your free consultation and let us match you with the perfect caregiver.
+        </p>
+        <Link
+          to="/contact"
+          style={{
+            background: 'var(--terracotta)', color: '#fff',
+            padding: '0.9rem 2.5rem', borderRadius: '50px',
+            fontSize: '0.9rem', fontWeight: 500, textDecoration: 'none',
+            display: 'inline-block', transition: 'all 0.3s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'var(--deep-clay)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'var(--terracotta)'; e.currentTarget.style.transform = ''; }}
+        >
+          Book a Consultation →
+        </Link>
+      </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .services-page-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

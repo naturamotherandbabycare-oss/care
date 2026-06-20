@@ -31,7 +31,7 @@ app.use('/api/', apiLimiter);
 app.get('/api/health', (req, res) => {
   res.json({ 
     success: true, 
-    message: 'Natura Cleaning Service API is running',
+    message: 'Natura Baby & Mother Care API is running',
     timestamp: new Date().toISOString(),
   });
 });

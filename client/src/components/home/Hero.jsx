@@ -1,102 +1,205 @@
 import { Link } from 'react-router-dom';
-import Button from '../ui/Button';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-dark-50 via-primary-50/30 to-dark-50">
-      {/* Animated background blobs */}
-      <div className="blob w-96 h-96 bg-primary-300 top-20 -right-20" />
-      <div className="blob w-80 h-80 bg-accent-300 bottom-20 -left-20" style={{ animationDelay: '2s' }} />
-      <div className="blob w-64 h-64 bg-primary-200 top-1/2 left-1/3" style={{ animationDelay: '4s' }} />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse-soft" />
-              #1 Mother & Newborn Baby Care in Gujarat
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-dark-900 leading-tight tracking-tight">
-              Compassionate care
-              <span className="block text-primary-600 mt-2">for mother & baby.</span>
-            </h1>
-            
-            <p className="mt-6 text-lg text-dark-500 leading-relaxed max-w-lg">
-              Professional, reliable postnatal care, infant care, and Japa services with trained, verified caregivers. Book a free consultation and sit back with complete peace of mind.
-            </p>
+    <section style={{
+      minHeight: '100vh',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      alignItems: 'center',
+      padding: '8rem 5% 4rem',
+      position: 'relative',
+      overflow: 'hidden',
+      background: 'var(--cream)',
+    }}
+    className="hero-section"
+    >
+      {/* Background blob */}
+      <div style={{
+        content: '',
+        position: 'absolute',
+        right: '-10%',
+        top: '-20%',
+        width: '70%',
+        height: '130%',
+        background: 'radial-gradient(ellipse at 60% 40%, var(--blush) 0%, var(--soft-sage) 60%, transparent 80%)',
+        opacity: 0.4,
+        borderRadius: '50%',
+        animation: 'pulseBlob 8s ease-in-out infinite alternate',
+      }} />
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/contact">
-                <Button size="lg" icon="✨">
-                  Book Free Consultation
-                </Button>
-              </Link>
-              <Link to="/pricing">
-                <Button variant="outline" size="lg">
-                  View Packages
-                </Button>
-              </Link>
-            </div>
+      {/* Left: Hero Content */}
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          background: 'var(--soft-sage)',
+          color: 'var(--deep-clay)',
+          padding: '0.4rem 1rem',
+          borderRadius: '50px',
+          fontSize: '0.78rem',
+          fontWeight: 500,
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          marginBottom: '1.8rem',
+        }}>
+          ✦ Certified Postnatal Care
+        </div>
 
-            {/* Trust indicators */}
-            <div className="mt-10 flex items-center gap-6">
-              <div className="flex -space-x-3">
-                {['🤰', '👶', '🌸', '🍼'].map((emoji, i) => (
-                  <div
-                    key={i}
-                    className="w-10 h-10 rounded-full bg-primary-100 border-2 border-white flex items-center justify-center text-sm"
-                  >
-                    {emoji}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-accent-500 text-sm">★</span>
-                  ))}
-                  <span className="text-sm font-semibold text-dark-700 ml-1">4.9</span>
-                </div>
-                <p className="text-xs text-dark-400 mt-0.5">Trusted by 2,500+ families</p>
-              </div>
-            </div>
+        <h1 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: 'clamp(3rem, 5.5vw, 5rem)',
+          fontWeight: 300,
+          lineHeight: 1.1,
+          color: 'var(--charcoal)',
+        }}>
+          Gentle care for <em style={{ fontStyle: 'italic', color: 'var(--terracotta)', fontWeight: 400 }}>mothers</em> &amp; newborns
+        </h1>
+
+        <p style={{
+          fontSize: '1.05rem',
+          color: 'var(--warm-gray)',
+          lineHeight: 1.75,
+          maxWidth: '480px',
+          margin: '1.8rem 0 2.5rem',
+        }}>
+          Professional postnatal support that nurtures both mother and baby through the most transformative chapter of life — with warmth, expertise, and deep compassion.
+        </p>
+
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Link
+            to="/contact"
+            style={{
+              background: 'var(--terracotta)',
+              color: '#fff',
+              padding: '0.9rem 2rem',
+              borderRadius: '50px',
+              fontSize: '0.9rem',
+              fontWeight: 500,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              transition: 'all 0.3s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--deep-clay)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(139,74,56,0.25)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'var(--terracotta)'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+          >
+            Book a Consultation →
+          </Link>
+          <Link
+            to="/services"
+            style={{
+              border: '1.5px solid var(--terracotta)',
+              color: 'var(--terracotta)',
+              padding: '0.9rem 2rem',
+              borderRadius: '50px',
+              fontSize: '0.9rem',
+              fontWeight: 500,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              transition: 'all 0.3s',
+              background: 'transparent',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--terracotta)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--terracotta)'; e.currentTarget.style.transform = ''; }}
+          >
+            Explore Services
+          </Link>
+        </div>
+      </div>
+
+      {/* Right: Visual Card */}
+      <div style={{
+        position: 'relative',
+        zIndex: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      className="hidden lg:flex"
+      >
+        <div style={{ position: 'relative', width: '420px', height: '520px' }}>
+          {/* Main card */}
+          <div style={{
+            width: '340px',
+            height: '440px',
+            background: 'linear-gradient(145deg, var(--blush), var(--dusty-rose))',
+            borderRadius: '24px 24px 80px 24px',
+            position: 'absolute',
+            top: '40px',
+            left: '40px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            padding: '2rem',
+            overflow: 'hidden',
+            boxShadow: '0 30px 60px rgba(196,113,90,0.2)',
+          }}>
+            <div style={{
+              position: 'absolute', top: '50%', left: '50%',
+              transform: 'translate(-50%, -60%)',
+              fontSize: '9rem', opacity: 0.35,
+            }}>🤱</div>
+            <div style={{
+              background: 'rgba(255,255,255,0.4)',
+              backdropFilter: 'blur(8px)',
+              color: 'var(--deep-clay)',
+              padding: '0.35rem 0.9rem',
+              borderRadius: '50px',
+              fontSize: '0.75rem',
+              fontWeight: 500,
+              display: 'inline-block',
+              marginBottom: '0.6rem',
+            }}>Expert Care</div>
+            <h3 style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: '1.5rem',
+              color: 'var(--deep-clay)',
+              fontWeight: 600,
+            }}>Your postnatal companion</h3>
           </div>
 
-          {/* Right Visual */}
-          <div className="hidden lg:block animate-fade-up animate-delay-200">
-            <div className="relative">
-              {/* Main Card */}
-              <div className="w-full aspect-[4/5] rounded-3xl bg-gradient-to-br from-primary-500 to-primary-700 p-8 shadow-2xl shadow-primary-600/30 flex flex-col justify-end relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-10 left-10 text-8xl">🤱</div>
-                  <div className="absolute bottom-20 right-10 text-7xl">👶</div>
-                  <div className="absolute top-1/3 right-1/4 text-6xl">🌸</div>
-                </div>
-                <div className="relative z-10">
-                  <div className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full inline-block mb-3">
-                    MOTHER & INFANT CARE
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Your family deserves the best postpartum care</h3>
-                  <p className="text-primary-100 text-sm mt-2">50+ certified, verified caregivers ready to support you</p>
-                </div>
-              </div>
+          {/* Float card 1 */}
+          <div style={{
+            position: 'absolute',
+            background: '#fff',
+            borderRadius: '16px',
+            padding: '1rem 1.3rem',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+            top: 0, right: 0, width: '160px',
+          }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem', color: 'var(--terracotta)', fontWeight: 600, lineHeight: 1 }}>500+</div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--warm-gray)', marginTop: '0.2rem' }}>Happy Families Served</div>
+          </div>
 
-              {/* Floating Cards */}
-              <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float">
-                <div className="text-3xl font-bold text-primary-600">2,500+</div>
-                <div className="text-xs text-dark-400 mt-1">Families Supported</div>
-              </div>
-
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-float" style={{ animationDelay: '3s' }}>
-                <div className="text-3xl font-bold text-accent-600">98%</div>
-                <div className="text-xs text-dark-400 mt-1">Satisfaction Rate</div>
-              </div>
-            </div>
+          {/* Float card 2 */}
+          <div style={{
+            position: 'absolute',
+            background: '#fff',
+            borderRadius: '16px',
+            padding: '1rem 1.3rem',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+            bottom: 0, left: 0, width: '170px',
+          }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem', color: 'var(--terracotta)', fontWeight: 600, lineHeight: 1 }}>24/7</div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--warm-gray)', marginTop: '0.2rem' }}>On-Call Support</div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hero-section {
+            grid-template-columns: 1fr !important;
+            min-height: auto !important;
+            padding-top: 7rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
