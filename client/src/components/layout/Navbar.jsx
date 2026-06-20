@@ -6,7 +6,7 @@ import { NAV_LINKS } from '../../utils/constants';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { isAuthenticated, isAdmin, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,9 +16,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileOpen(false);
   }, [location]);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileOpen]);
 
   const handleLogout = () => {
     logout();
@@ -26,250 +33,407 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '1.2rem 5%',
-        background: 'rgba(250, 246, 239, 0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(196, 113, 90, 0.15)',
-        boxShadow: isScrolled ? '0 4px 20px rgba(0,0,0,0.08)' : 'none',
-        transition: 'box-shadow 0.3s',
-        animation: 'fadeDown 0.8s ease both',
-      }}
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      {/* Logo */}
-      <Link to="/" style={{ textDecoration: 'none' }} aria-label="Natura Baby & Mother Care - Home">
-        <div style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '1.6rem',
-          fontWeight: 600,
-          color: '#8B4A38',
-          letterSpacing: '0.02em',
-        }}>
-          Natura <span style={{ color: '#C4715A', fontStyle: 'italic' }}>Baby &amp; Mother Care</span>
-        </div>
-      </Link>
+    <>
+      <nav className="natura-nav" data-scrolled={isScrolled} role="navigation" aria-label="Main navigation">
 
-      {/* Desktop Navigation */}
-      <ul style={{ display: 'flex', gap: '2.2rem', listStyle: 'none', alignItems: 'center' }}
-          className="hidden lg:flex">
-        {NAV_LINKS.map(link => (
-          <li key={link.path}>
-            <Link
-              to={link.path}
-              style={{
-                textDecoration: 'none',
-                color: location.pathname === link.path ? '#C4715A' : '#7A6E6B',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                transition: 'color 0.3s',
-              }}
-              onMouseEnter={e => e.target.style.color = '#C4715A'}
-              onMouseLeave={e => e.target.style.color = location.pathname === link.path ? '#C4715A' : '#7A6E6B'}
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
+        {/* ── Logo ── */}
+        <Link to="/" className="natura-nav__logo" aria-label="Natura Baby & Mother Care - Home">
+          <span className="natura-nav__logo-main">Natura</span>
+          <span className="natura-nav__logo-sub"> Baby &amp; Mother Care</span>
+        </Link>
 
-        {/* Auth links */}
-        {isAuthenticated ? (
-          <>
-            <li>
+        {/* ── Desktop Links ── */}
+        <ul className="natura-nav__links" aria-label="Navigation links">
+          {NAV_LINKS.map(link => (
+            <li key={link.path}>
               <Link
-                to={isAdmin ? '/admin' : '/dashboard'}
-                style={{
-                  textDecoration: 'none',
-                  color: '#7A6E6B',
-                  fontSize: '0.85rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}
+                to={link.path}
+                className={`natura-nav__link${location.pathname === link.path ? ' active' : ''}`}
               >
-                {isAdmin ? 'Admin' : 'Dashboard'}
+                {link.name}
               </Link>
             </li>
-            <li>
-              <button
-                onClick={handleLogout}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#7A6E6B',
-                  fontSize: '0.85rem',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Logout
-              </button>
-            </li>
-          </>
-        ) : null}
-
-        {/* Book Now CTA */}
-        <li>
-          <Link
-            to="/contact"
-            style={{
-              textDecoration: 'none',
-              background: '#C4715A',
-              color: '#fff',
-              padding: '0.55rem 1.4rem',
-              borderRadius: '50px',
-              fontSize: '0.82rem',
-              fontWeight: 500,
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              transition: 'background 0.3s',
-              display: 'inline-block',
-            }}
-            onMouseEnter={e => e.target.style.background = '#8B4A38'}
-            onMouseLeave={e => e.target.style.background = '#C4715A'}
-          >
-            Book Now
-          </Link>
-        </li>
-      </ul>
-
-      {/* Mobile Menu Button */}
-      <button
-        className="lg:hidden"
-        style={{
-          background: 'transparent',
-          border: 'none',
-          cursor: 'pointer',
-          padding: '0.5rem',
-        }}
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isMobileOpen}
-      >
-        <div style={{ width: '24px', height: '20px', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <span style={{
-            display: 'block', height: '2px', width: '24px',
-            background: '#2C2422', borderRadius: '2px',
-            transform: isMobileOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none',
-            transition: 'all 0.3s'
-          }} />
-          <span style={{
-            display: 'block', height: '2px', width: '24px',
-            background: '#2C2422', borderRadius: '2px',
-            opacity: isMobileOpen ? 0 : 1,
-            transition: 'all 0.3s'
-          }} />
-          <span style={{
-            display: 'block', height: '2px', width: '24px',
-            background: '#2C2422', borderRadius: '2px',
-            transform: isMobileOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none',
-            transition: 'all 0.3s'
-          }} />
-        </div>
-      </button>
-
-      {/* Mobile Menu */}
-      {isMobileOpen && (
-        <div style={{
-          position: 'absolute',
-          top: '100%',
-          left: 0,
-          right: 0,
-          background: 'rgba(250, 246, 239, 0.98)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(196, 113, 90, 0.15)',
-          padding: '1rem 5%',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem',
-        }}>
-          {NAV_LINKS.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              style={{
-                textDecoration: 'none',
-                color: location.pathname === link.path ? '#C4715A' : '#7A6E6B',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                padding: '0.7rem 0',
-                borderBottom: '1px solid rgba(196, 113, 90, 0.1)',
-              }}
-            >
-              {link.name}
-            </Link>
           ))}
+
           {isAuthenticated && (
             <>
-              <Link
-                to={isAdmin ? '/admin' : '/dashboard'}
-                style={{
-                  textDecoration: 'none',
-                  color: '#7A6E6B',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  padding: '0.7rem 0',
-                  borderBottom: '1px solid rgba(196, 113, 90, 0.1)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {isAdmin ? 'Admin' : 'Dashboard'}
-              </Link>
-              <button
-                onClick={handleLogout}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#C4715A',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  padding: '0.7rem 0',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                Logout
-              </button>
+              <li>
+                <Link
+                  to={isAdmin ? '/admin' : '/dashboard'}
+                  className="natura-nav__link"
+                >
+                  {isAdmin ? 'Admin' : 'Dashboard'}
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="natura-nav__link natura-nav__logout">
+                  Logout
+                </button>
+              </li>
             </>
           )}
-          <Link
-            to="/contact"
-            style={{
-              textDecoration: 'none',
-              background: '#C4715A',
-              color: '#fff',
-              padding: '0.75rem 1.4rem',
-              borderRadius: '50px',
-              fontSize: '0.88rem',
-              fontWeight: 500,
-              textAlign: 'center',
-              marginTop: '0.5rem',
-              display: 'block',
-            }}
-          >
-            Book Now
-          </Link>
+
+          <li>
+            <Link to="/contact" className="natura-nav__cta">Book Now</Link>
+          </li>
+        </ul>
+
+        {/* ── Hamburger ── */}
+        <button
+          className="natura-nav__hamburger"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileOpen}
+        >
+          <span className={`bar bar-1${isMobileOpen ? ' open' : ''}`} />
+          <span className={`bar bar-2${isMobileOpen ? ' open' : ''}`} />
+          <span className={`bar bar-3${isMobileOpen ? ' open' : ''}`} />
+        </button>
+      </nav>
+
+      {/* ── Mobile Menu Overlay ── */}
+      <div
+        className={`natura-mobile-menu${isMobileOpen ? ' visible' : ''}`}
+        aria-hidden={!isMobileOpen}
+      >
+        {/* Close tap area behind menu */}
+        <div className="natura-mobile-menu__backdrop" onClick={() => setIsMobileOpen(false)} />
+
+        <div className="natura-mobile-menu__panel">
+          {/* Logo inside menu */}
+          <div className="natura-mobile-menu__header">
+            <Link to="/" className="natura-nav__logo" onClick={() => setIsMobileOpen(false)}>
+              <span className="natura-nav__logo-main">Natura</span>
+              <span className="natura-nav__logo-sub"> Baby &amp; Mother Care</span>
+            </Link>
+            <button
+              className="natura-mobile-menu__close"
+              onClick={() => setIsMobileOpen(false)}
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          <ul className="natura-mobile-menu__links">
+            {NAV_LINKS.map(link => (
+              <li key={link.path}>
+                <Link
+                  to={link.path}
+                  className={`natura-mobile-menu__link${location.pathname === link.path ? ' active' : ''}`}
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  {link.name}
+                  <span className="natura-mobile-menu__arrow">→</span>
+                </Link>
+              </li>
+            ))}
+
+            {isAuthenticated && (
+              <>
+                <li>
+                  <Link
+                    to={isAdmin ? '/admin' : '/dashboard'}
+                    className="natura-mobile-menu__link"
+                    onClick={() => setIsMobileOpen(false)}
+                  >
+                    {isAdmin ? 'Admin' : 'Dashboard'}
+                    <span className="natura-mobile-menu__arrow">→</span>
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => { handleLogout(); setIsMobileOpen(false); }}
+                    className="natura-mobile-menu__link natura-mobile-menu__logout"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+
+          <div className="natura-mobile-menu__footer">
+            <Link
+              to="/contact"
+              className="natura-mobile-menu__book"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              Book Free Consultation →
+            </Link>
+            <div className="natura-mobile-menu__contact-row">
+              <a href="tel:+919898809630">📞 +91 98988 09630</a>
+              <a href="https://wa.me/919898809630" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            </div>
+          </div>
         </div>
-      )}
-    </nav>
+      </div>
+
+      <style>{`
+        /* ══ Navbar ══ */
+        .natura-nav {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.1rem 5%;
+          background: rgba(250, 246, 239, 0.94);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border-bottom: 1px solid rgba(196,113,90,0.12);
+          transition: box-shadow 0.3s;
+        }
+        .natura-nav[data-scrolled="true"] {
+          box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        }
+
+        /* Logo */
+        .natura-nav__logo {
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        .natura-nav__logo-main {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #8B4A38;
+          letter-spacing: 0.02em;
+        }
+        .natura-nav__logo-sub {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.5rem;
+          font-weight: 400;
+          font-style: italic;
+          color: #C4715A;
+        }
+
+        /* Desktop links */
+        .natura-nav__links {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          list-style: none;
+        }
+        .natura-nav__link {
+          text-decoration: none;
+          background: none;
+          border: none;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.8rem;
+          font-weight: 500;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          color: #7A6E6B;
+          cursor: pointer;
+          transition: color 0.25s;
+          padding: 0;
+        }
+        .natura-nav__link:hover,
+        .natura-nav__link.active { color: #C4715A; }
+        .natura-nav__logout { background: none; border: none; }
+        .natura-nav__cta {
+          text-decoration: none;
+          background: #C4715A;
+          color: #fff !important;
+          padding: 0.5rem 1.3rem;
+          border-radius: 50px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.8rem;
+          font-weight: 500;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          transition: background 0.25s, transform 0.2s;
+        }
+        .natura-nav__cta:hover {
+          background: #8B4A38;
+          transform: translateY(-1px);
+        }
+
+        /* Hamburger — hidden on desktop */
+        .natura-nav__hamburger {
+          display: none;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 26px;
+          height: 18px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          z-index: 300;
+        }
+        .bar {
+          display: block;
+          height: 2px;
+          width: 100%;
+          background: #2C2422;
+          border-radius: 2px;
+          transition: transform 0.3s, opacity 0.3s;
+          transform-origin: center;
+        }
+        .bar-1.open { transform: translateY(8px) rotate(45deg); }
+        .bar-2.open { opacity: 0; transform: scaleX(0); }
+        .bar-3.open { transform: translateY(-8px) rotate(-45deg); }
+
+        /* ══ Mobile Menu ══ */
+        .natura-mobile-menu {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 199;
+          pointer-events: none;
+        }
+        .natura-mobile-menu.visible {
+          pointer-events: all;
+        }
+        .natura-mobile-menu__backdrop {
+          position: absolute;
+          inset: 0;
+          background: rgba(44, 36, 34, 0.5);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .natura-mobile-menu.visible .natura-mobile-menu__backdrop {
+          opacity: 1;
+        }
+        .natura-mobile-menu__panel {
+          position: absolute;
+          top: 0; right: 0;
+          width: min(85vw, 340px);
+          height: 100%;
+          background: #FAF6EF;
+          display: flex;
+          flex-direction: column;
+          transform: translateX(100%);
+          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          overflow-y: auto;
+          z-index: 201;
+        }
+        .natura-mobile-menu.visible .natura-mobile-menu__panel {
+          transform: translateX(0);
+        }
+
+        /* Panel header */
+        .natura-mobile-menu__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.2rem 1.5rem;
+          border-bottom: 1px solid rgba(196,113,90,0.12);
+        }
+        .natura-mobile-menu__close {
+          background: none;
+          border: none;
+          font-size: 1.2rem;
+          color: #7A6E6B;
+          cursor: pointer;
+          padding: 0.4rem;
+          border-radius: 50%;
+          transition: background 0.2s;
+        }
+        .natura-mobile-menu__close:hover {
+          background: rgba(196,113,90,0.1);
+          color: #C4715A;
+        }
+
+        /* Panel links */
+        .natura-mobile-menu__links {
+          list-style: none;
+          padding: 1rem 0;
+          flex: 1;
+        }
+        .natura-mobile-menu__link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.95rem 1.5rem;
+          text-decoration: none;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: #2C2422;
+          letter-spacing: 0.04em;
+          border-bottom: 1px solid rgba(196,113,90,0.08);
+          transition: background 0.2s, color 0.2s;
+          background: none;
+          border: none;
+          border-bottom: 1px solid rgba(196,113,90,0.08);
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+        }
+        .natura-mobile-menu__link:hover,
+        .natura-mobile-menu__link.active {
+          background: rgba(196,113,90,0.06);
+          color: #C4715A;
+        }
+        .natura-mobile-menu__link.active .natura-mobile-menu__arrow {
+          color: #C4715A;
+        }
+        .natura-mobile-menu__arrow {
+          font-size: 0.9rem;
+          color: #D9A89A;
+        }
+        .natura-mobile-menu__logout {
+          color: #7A6E6B;
+        }
+
+        /* Panel footer */
+        .natura-mobile-menu__footer {
+          padding: 1.5rem;
+          border-top: 1px solid rgba(196,113,90,0.12);
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .natura-mobile-menu__book {
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          background: #C4715A;
+          color: #fff;
+          padding: 0.9rem 1.5rem;
+          border-radius: 50px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.92rem;
+          font-weight: 500;
+          transition: background 0.25s;
+        }
+        .natura-mobile-menu__book:hover { background: #8B4A38; }
+        .natura-mobile-menu__contact-row {
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;
+        }
+        .natura-mobile-menu__contact-row a {
+          text-decoration: none;
+          font-size: 0.82rem;
+          color: #7A6E6B;
+          font-family: 'DM Sans', sans-serif;
+          transition: color 0.2s;
+        }
+        .natura-mobile-menu__contact-row a:hover { color: #C4715A; }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 1024px) {
+          .natura-nav__links { display: none; }
+          .natura-nav__hamburger { display: flex; }
+          .natura-mobile-menu { display: block; }
+        }
+
+        /* Smaller logo on very small screens */
+        @media (max-width: 400px) {
+          .natura-nav__logo-main,
+          .natura-nav__logo-sub {
+            font-size: 1.15rem;
+          }
+          .natura-nav {
+            padding: 0.9rem 4%;
+          }
+        }
+      `}</style>
+    </>
   );
 }
