@@ -7,9 +7,9 @@ const DB = {
     {
       id: 'admin-uuid-1234',
       name: 'Admin',
-      email: 'admin@naturababycare.in',
+      email: 'naturamotherandbabycare@gmail.com',
       password_hash: '$2a$12$jupX4VW/UVwYlJAM4yBPWe.gvmUwGX.tDn6EZ7fnk2Q3kwyF3di62', // admin123
-      phone: '+919898809630',
+      phone: '+917984057063',
       role: 'admin',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),

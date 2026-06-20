@@ -61,4 +61,4 @@ INSERT INTO services (id, name, description, category, price, duration_minutes, 
 -- NOTE: Run this AFTER setting up the database tables.
 -- The password hash below is for 'admin123'
 INSERT INTO users (name, email, password_hash, phone, role) VALUES
-('Admin', 'admin@naturababycare.in', '$2a$12$jupX4VW/UVwYlJAM4yBPWe.gvmUwGX.tDn6EZ7fnk2Q3kwyF3di62', '+919898809630', 'admin');
+('Admin', 'naturamotherandbabycare@gmail.com', '$2a$12$jupX4VW/UVwYlJAM4yBPWe.gvmUwGX.tDn6EZ7fnk2Q3kwyF3di62', '+917984057063', 'admin');

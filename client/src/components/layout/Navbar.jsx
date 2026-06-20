@@ -162,8 +162,8 @@ export default function Navbar() {
               Book Free Consultation →
             </Link>
             <div className="natura-mobile-menu__contact-row">
-              <a href="tel:+919898809630">📞 +91 98988 09630</a>
-              <a href="https://wa.me/919898809630" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+              <a href="tel:+917984057063">📞 +91 79840 57063</a>
+              <a href="https://wa.me/917984057063" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
             </div>
           </div>
         </div>

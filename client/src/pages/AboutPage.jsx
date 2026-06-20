@@ -201,7 +201,7 @@ export default function AboutPage() {
             Book a Consultation →
           </Link>
           <a
-            href="https://wa.me/919898809630"
+            href="https://wa.me/917984057063"
             target="_blank"
             rel="noopener noreferrer"
             style={{

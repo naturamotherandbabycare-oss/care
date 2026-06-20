@@ -70,7 +70,7 @@ Vercel is the easiest and most performant host for Vite + React single-page appl
 3. Book a cleaning service.
 4. Log out.
 5. Log in with the default admin account:
-   - **Email:** `admin@naturababycare.in`
+   - **Email:** `naturamotherandbabycare@gmail.com`
    - **Password:** `admin123`
 6. Verify you are redirected to the Admin page.
 7. Locate the booking you just created under the Bookings tab.

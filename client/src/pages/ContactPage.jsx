@@ -25,7 +25,7 @@ export default function ContactPage() {
     }
 
     const formattedPhone = form.phone.replace(/\D/g, '');
-    const submitEmail = `${formattedPhone || 'client'}@naturababycare.in`;
+    const submitEmail = `${formattedPhone || 'client'}@naturamotherandbabycare.com`;
 
     const combinedMessage = `
 Due / Birth Date: ${form.dueDate || 'Not provided'}
@@ -80,8 +80,8 @@ Special Requirements: ${form.specialRequirements || 'None'}
             </p>
 
             {[
-              { icon: '📞', label: 'Phone / WhatsApp', value: '+91 98988 09630', href: 'tel:+919898809630' },
-              { icon: '📧', label: 'Email', value: 'hello@naturababycare.in', href: 'mailto:hello@naturababycare.in' },
+              { icon: '📞', label: 'Phone / WhatsApp', value: '+91 79840 57063', href: 'tel:+917984057063' },
+              { icon: '📧', label: 'Email', value: 'naturamotherandbabycare@gmail.com', href: 'mailto:naturamotherandbabycare@gmail.com' },
               { icon: '📍', label: 'Service Areas', value: 'Now in Ahmedabad · Surat · Bhavnagar · Rajkot' },
               { icon: '🕐', label: 'Response Time', value: 'Within 2 hours · 7 days a week' },
             ].map((detail, i) => (
@@ -106,7 +106,7 @@ Special Requirements: ${form.specialRequirements || 'None'}
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/919898809630?text=Hi%20Natura!%20I%27d%20like%20to%20know%20more%20about%20your%20postnatal%20care%20packages%20in%20Gujarat."
+              href="https://wa.me/917984057063?text=Hi%20Natura!%20I%27d%20like%20to%20know%20more%20about%20your%20postnatal%20care%20packages%20in%20Gujarat."
               target="_blank"
               rel="noopener noreferrer"
               style={{
