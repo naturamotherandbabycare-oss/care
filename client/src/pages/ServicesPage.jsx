@@ -36,13 +36,7 @@ export default function ServicesPage() {
 
       {/* Services Grid */}
       <section style={{ padding: '6rem 5%', background: 'var(--warm-white)' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1.5rem',
-        }}
-        className="services-page-grid"
-        >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }} className="services-page-grid">
           {SERVICES.map((service, index) => {
             const isFeatured = index === 1;
             return (
@@ -174,11 +168,6 @@ export default function ServicesPage() {
         </Link>
       </section>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .services-page-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   );
 }

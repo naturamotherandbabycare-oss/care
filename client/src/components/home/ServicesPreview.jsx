@@ -126,12 +126,6 @@ export default function ServicesPreview() {
         })}
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .services-header-grid { grid-template-columns: 1fr !important; }
-          .services-cards-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

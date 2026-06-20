@@ -191,15 +191,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .hero-section {
-            grid-template-columns: 1fr !important;
-            min-height: auto !important;
-            padding-top: 7rem !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

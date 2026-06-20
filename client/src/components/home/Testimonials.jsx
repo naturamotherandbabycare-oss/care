@@ -103,11 +103,6 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .testimonials-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -124,14 +124,6 @@ export default function CTABanner() {
         ))}
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .caregivers-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .caregivers-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -226,12 +226,6 @@ Special Requirements: ${form.specialRequirements || 'None'}
         </div>
       </section>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .contact-page-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .form-row { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   );
 }

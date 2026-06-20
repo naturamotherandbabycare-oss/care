@@ -85,11 +85,6 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .how-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-        }
-      `}</style>
     </section>
   );
 }

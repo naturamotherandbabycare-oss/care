@@ -185,3 +185,147 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
   }
 }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE FIRST
+   ══════════════════════════════════════════ */
+
+/* ── Hero ── */
+.hero-section {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── Nav mobile hidden ── */
+.nav-desktop {
+  display: flex;
+}
+
+/* ── Tablet ≤ 900px ── */
+@media (max-width: 900px) {
+  /* Hero */
+  .hero-section {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Services grid 3→1 */
+  .services-header-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-cards-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .services-page-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* How it works */
+  .how-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Caregivers / Medical Team */
+  .caregivers-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact grids */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .contact-page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* About page */
+  .about-intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .about-purpose-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-team-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Form rows */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Mobile ≤ 600px ── */
+@media (max-width: 600px) {
+  /* Services grid 2→1 */
+  .services-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Caregivers 2→1 */
+  .caregivers-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer 2→1 */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* About team 2→1 */
+  .about-team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce section padding */
+  section {
+    padding-left: 4% !important;
+    padding-right: 4% !important;
+  }
+
+  /* Navbar padding */
+  nav {
+    padding-left: 4% !important;
+    padding-right: 4% !important;
+  }
+
+  /* Hero text size */
+  .hero-section h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+  }
+
+  /* Stats strip — 2 columns */
+  .stats-strip-inner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ── Extra small ≤ 400px ── */
+@media (max-width: 400px) {
+  .hero-section {
+    padding-top: 5rem !important;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem !important;
+  }
+}

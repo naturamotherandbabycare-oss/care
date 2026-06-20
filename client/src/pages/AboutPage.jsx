@@ -217,16 +217,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .about-intro-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .about-purpose-grid { grid-template-columns: 1fr !important; }
-          .about-team-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .about-team-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   );
 }
